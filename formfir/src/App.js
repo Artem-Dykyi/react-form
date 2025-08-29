@@ -1,25 +1,30 @@
 import { Component } from 'react';
 import './App.css';
-// import { Info } from './components/Info';
+import { Info } from './components/Info';
 import TodoList from "./components/TodoList"
 import TodoEditor from "./components/TodoEditor"
 import Filter from './components/Filter';
+import todo from "./todo.json"
 
 
 export class App extends Component {
   state={
-    // todos: initialTodos,
+    todos: todo,
     filter: '',
   }
 
   render(){
+    const {todos} = this.state
+    const everyTask = todos.length
+    const finished = todos.filter((t) => t.completed).length
+    
 
      return (
       <div className="App">
-        {/* <Info/> */}
+        <Info everyTask={everyTask} finished={finished}/>
         <TodoEditor/>
         <Filter/>
-        <TodoList/>
+        <TodoList todos ={todos}/>
 
       </div>
   );

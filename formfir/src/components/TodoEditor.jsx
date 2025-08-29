@@ -5,6 +5,10 @@ export class TodoEditor extends Component {
         textValue: '',
     }
 
+addTask=()=>{
+  
+}
+
   render(){
 
      return (
