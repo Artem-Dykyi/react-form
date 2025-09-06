@@ -5,6 +5,18 @@ import TodoList from "./components/TodoList";
 import TodoEditor from "./components/TodoEditor";
 import Filter from "./components/Filter";
 import todo from "./todo.json";
+import styled from "styled-components";
+
+const Box = styled.div`
+    margin-left: auto;
+    margin-right: auto;
+    background: pink;
+
+    justify-content: center; /* по горизонталі */
+    align-items: center;     
+ 
+    width: 700px;
+`
 
 export class App extends Component {
   state = {
@@ -24,6 +36,17 @@ export class App extends Component {
     }));
   };
 
+  delete = (id) =>{
+    this.setState((prevState)=>({
+      todos: prevState.todos.filter((t) => t.id !== id),
+    }))
+}
+
+handleFilterChange = (value) => {
+    this.setState({ filter: value });
+  };
+
+
 
   render() {
     const { todos } = this.state;
@@ -31,16 +54,18 @@ export class App extends Component {
     const finished = todos.filter((t) => t.completed).length;
 
     return (
-      <div className="App">
+      <Box className="App">
         <Info everyTask={everyTask} finished={finished} />
         <TodoEditor
           onAddTodo = {this.addTodo}
         />
-        <Filter />
+        <Filter onFilter={this.handleFilterChange}/>
         <TodoList
           todos={todos}
+          deleteId = {this.delete}
+           filter={this.state.filter}
         />
-      </div>
+      </Box>
     );
   }
 }

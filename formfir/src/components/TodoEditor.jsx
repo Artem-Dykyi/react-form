@@ -1,4 +1,22 @@
 import { Component } from "react";
+import styled from "styled-components";
+
+const Btn = styled.button`
+  background: orange;
+  width: 200px;
+  padding: 10px;
+
+
+`
+const Input = styled.input`
+  padding: 20px 70px;
+  width: 500px;
+`
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`
 
 export class TodoEditor extends Component {
   state = {
@@ -20,16 +38,16 @@ export class TodoEditor extends Component {
     const { textValue } = this.state;
 
     return (
-      <form action="" onSubmit={this.handleSubmit}>
-        <input
+      <Form action="" onSubmit={this.handleSubmit}>
+        <Input
           type="text"
           value={textValue}
           onChange={this.handleChange}
           placeholder="Нове завдання..."
         />
 
-        <button type="submit">Create</button>
-      </form>
+        <Btn type="submit">Create</Btn>
+      </Form>
     );
   }
 }

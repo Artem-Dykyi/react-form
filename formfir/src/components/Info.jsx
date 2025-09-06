@@ -1,3 +1,5 @@
+
+
 export const Info = ({everyTask, finished})=>{
     return(
         <div>
